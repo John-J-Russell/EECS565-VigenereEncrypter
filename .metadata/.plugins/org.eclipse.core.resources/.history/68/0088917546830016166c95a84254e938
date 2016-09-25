@@ -1,0 +1,48 @@
+/* @AUTHOR: John Russell, j362r647@ku.edu
+ * @DATE: 25 September 2016
+ * @FILENAME: VigenereEncrypterHelper.java
+ * @PURPOSE: An object that takes in plaintext and a key,
+ * 			 returns ciphertext.
+ */
+public class VigenereEncrypterHelper 
+{
+	private char[] m_plaintext;
+	private char[] m_key;
+	
+	/* @PRE:	Is called with sanitized input, where each char[] has no spaces
+	 * 			or symbols, and is all uppercase.
+	 * @POST:	The object has its member variables filled
+	 * @RETURN:	none
+	 */
+	VigenereEncrypterHelper(char[] plaintextInput, char[] keyInput)
+	{
+		m_plaintext = plaintextInput;
+		m_key = keyInput;
+	}
+	
+	char[] encrypt()
+	{
+		
+	}
+	
+	public void setPlainText(char[] plaintextInput)
+	{
+		m_plaintext = plaintextInput;
+	}
+	
+	public char[] getPlainText()
+	{
+		return(m_plaintext);
+	}
+	
+	public void setKey(char[] keyInput)
+	{
+		m_key = keyInput;
+	}
+	
+	public char[] getKey()
+	{
+		return(m_key);
+	}
+	
+}

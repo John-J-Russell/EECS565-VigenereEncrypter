@@ -1,0 +1,167 @@
+/* @AUTHOR: John Russell, j362r647@ku.edu
+ * @DATE: 25 September 2016
+ * @FILENAME: VigenereEncrypterHelper.java
+ * @PURPOSE: An object that takes in plaintext and a key,
+ * 			 returns ciphertext.
+ */
+public class VigenereEncrypterHelper 
+{
+	private char[] m_plaintext;
+	private char[] m_key;
+	
+	/* @PRE:	Is called with sanitized input, where each char[] has no spaces
+	 * 			or symbols, and is all uppercase.
+	 * @POST:	The object has its member variables filled
+	 * @RETURN:	none
+	 */
+	VigenereEncrypterHelper(char[] plaintextInput, char[] keyInput)
+	{
+		m_plaintext = plaintextInput;
+		m_key = keyInput;
+	}
+	
+	/* @PRE:	VigenereEncrypterHelper object has valid key and plaintext
+	 * @POST:	none
+	 * @RETURN:	a character array that has been encrypted with the proper
+	 * 			key and plaintext
+	 */
+	public char[] encrypt()
+	{
+		int[] plaintextNumbers = new int[m_plaintext.length];
+		//int[] cyphertextNumbers = new int[m_plaintext.length];
+		int[] keyNumbers = new int[m_key.length];
+		char[] cyphertext = new char[m_plaintext.length];
+		
+		//convert plaintext to integers
+		for(int x=0; x<m_plaintext.length;x++)
+		{
+			plaintextNumbers[x] = convertToNumber(m_plaintext[x]);
+		}
+		//convert key to integers
+		for (int x=0; x<m_key.length; x++)
+		{
+			keyNumbers[x] = convertToNumber(m_key[x]);
+		}
+		//convert plaintext numbers to cyphertext numbers
+		for(int x=0; x<m_plaintext.length; x++)
+		{
+			cyphertext[x] = convertToLetter((plaintextNumbers[x] + keyNumbers[x%m_key.length])%26);
+		}
+	}
+	
+	/* @PRE:	VigenereEncrypterHelper object exists, plaintextInput is 
+	 * 			sanitized.
+	 * @POST:	m_plaintext is set to the plaintextInput
+	 * @RETURN:	none
+	 */
+	public void setPlainText(char[] plaintextInput)
+	{
+		m_plaintext = plaintextInput;
+	}
+	
+	/* @PRE:	VigenereEncrypterHelper object exists, has member variables
+	 * 			populated
+	 * @POST:	none
+	 * @RETURN:	the m_plaintext this object currently holds
+	 */
+	public char[] getPlainText()
+	{
+		return(m_plaintext);
+	}
+	
+	/* @PRE:	VigenereEncrypterHelper object exists, keyInput is 
+	 * 			sanitized.
+	 * @POST:	m_key is set to the keyInput
+	 * @RETURN:	none
+	 */
+	public void setKey(char[] keyInput)
+	{
+		m_key = keyInput;
+	}
+	
+	/* @PRE:	VigenereEncrypterHelper object exists, has member variables
+	 * 			populated
+	 * @POST:	none
+	 * @RETURN:	m_key
+	 */
+	public char[] getKey()
+	{
+		return(m_key);
+	}
+	
+	/* @PRE: is passed a character
+	 * @POST: none
+	 * @RETURN: the integer value that maps A-Z -> 0-25
+	 */
+	private int convertToNumber(char input)
+	{
+		switch (input) 
+		{
+			case 'A': return(0);					  
+			case 'B': return(1);					  
+			case 'C': return(2);					  
+			case 'D': return(3);					  
+			case 'E': return(4);					  
+			case 'F': return(5);					  
+			case 'G': return(6);					  
+			case 'H': return(7);					  
+			case 'I': return(8);					  
+			case 'J': return(9);					  
+			case 'K': return(10);					  
+			case 'L': return(11);					  
+			case 'M': return(12);					  
+			case 'N': return(13);					  
+			case 'O': return(14);					  
+			case 'P': return(15);					  
+			case 'Q': return(16);					  
+			case 'R': return(17);					  
+			case 'S': return(18);					  
+			case 'T': return(19);					  
+			case 'U': return(20);					  
+			case 'V': return(21);					  
+			case 'W': return(22);					  
+			case 'X': return(23);					  
+			case 'Y': return(24);					  
+			case 'Z': return(25);					  
+			default: return(0);					 
+		}
+	}
+	
+	/* @PRE: is passed an integer
+	 * @POST: none
+	 * @RETURN: the character that maps 0-25 -> A-Z
+	 */
+	private char convertToLetter(int input)
+	{
+		switch (input) 
+		{
+			case 0: return('A');					  
+			case 1: return('B');					  
+			case 2: return('C');					  
+			case 3: return('D');					  
+			case 4: return('E');					  
+			case 5: return('F');					  
+			case 6: return('G');					  
+			case 7: return('H');					  
+			case 8: return('I');					  
+			case 9: return('J');					  
+			case 10: return('K');					  
+			case 11: return('L');					  
+			case 12: return('M');					  
+			case 13: return('N');					  
+			case 14: return('O');					  
+			case 15: return('P');					  
+			case 16: return('Q');					  
+			case 17: return('R');					  
+			case 18: return('S');					  
+			case 19: return('T');					  
+			case 20: return('U');					  
+			case 21: return('V');					  
+			case 22: return('W');					  
+			case 23: return('X');					  
+			case 24: return('Y');					  
+			case 25: return('Z');					  
+			default: return('A');					 
+		}
+	}
+}
